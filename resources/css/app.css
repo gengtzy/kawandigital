@@ -9,12 +9,19 @@
 
 @theme {
     /* Set Plus Jakarta Sans sebagai font-sans utama */
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
 
-    /* Token Warna Brand kawandigital.id (opsional, langsung bisa dipakai sebagai bg-brand-blue, text-obsidian, dll) */
-    --color-brand-blue: #1649FF;
-    --color-obsidian: #090D16;
-    --color-soft-slate: #F6F8FB;
+    /* Token Warna Brand kawandigital.id (tersedia sebagai bg-brand-blue, bg-obsidian, bg-soft-slate, dll.) */
+    --color-brand-blue: #1649ff;
+    --color-obsidian: #090d16;
+    --color-soft-slate: #f6f8fb;
+    --color-ink-primary: #0f172a;
+    --color-ink-secondary: #475569;
+    --color-ink-light: #f8fafc;
+    --color-ink-muted: #94a3b8;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -140,7 +147,41 @@
         @apply border-border outline-ring/50;
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
     body {
         @apply bg-background text-foreground;
+    }
+
+    a[href],
+    button,
+    summary,
+    select,
+    label[for],
+    label:has(> input[type='checkbox'], > input[type='radio']),
+    [role='button'],
+    [role='link'],
+    [role='tab'],
+    [role='menuitem'],
+    [role='option'],
+    [role='switch'],
+    input[type='checkbox'],
+    input[type='radio'],
+    input[type='file'],
+    input[type='submit'],
+    input[type='button'],
+    input[type='reset'],
+    input[type='range'],
+    input[type='color'] {
+        cursor: pointer;
+    }
+
+    :disabled,
+    [aria-disabled='true'] {
+        cursor: not-allowed;
     }
 }
