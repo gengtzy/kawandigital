@@ -1,4 +1,5 @@
 import Reveal from '@/components/landing/reveal';
+import { resolveStorageUrl } from '@/lib/storage';
 import type { ProjectItem } from '@/types';
 
 type PortfolioSectionProps = {
@@ -229,6 +230,9 @@ export default function PortfolioSection({ projects }: PortfolioSectionProps) {
                 <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
                     {activeProjects.map((project, index) => {
                         const isWideCard = index === 2;
+                        const thumbnailUrl = resolveStorageUrl(
+                            project.thumbnail_path,
+                        );
 
                         return (
                             <Reveal
@@ -244,9 +248,9 @@ export default function PortfolioSection({ projects }: PortfolioSectionProps) {
                                                 : 'min-h-[240px] sm:min-h-[280px]'
                                         } ${THEME_SURFACE_CLASSES[project.bg_theme]}`}
                                     >
-                                        {project.thumbnail_path ? (
+                                        {thumbnailUrl ? (
                                             <img
-                                                src={project.thumbnail_path}
+                                                src={thumbnailUrl}
                                                 alt={`Tampilan website ${project.title}`}
                                                 width={1200}
                                                 height={750}
@@ -289,4 +293,3 @@ export default function PortfolioSection({ projects }: PortfolioSectionProps) {
         </section>
     );
 }
-

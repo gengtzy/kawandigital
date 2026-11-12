@@ -46,6 +46,9 @@ class HandleInertiaRequests extends Middleware
             'siteSettings' => Schema::hasTable('site_settings')
                 ? SiteSetting::query()->pluck('value', 'key')->all()
                 : [],
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+            ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

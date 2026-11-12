@@ -56,6 +56,7 @@ export type PricingPlanItem = {
     is_highlighted: boolean;
     cta_text: string;
     whatsapp_message?: string | null;
+    sort_order?: number;
 };
 
 export type ProjectItem = {
@@ -68,6 +69,8 @@ export type ProjectItem = {
     thumbnail_path?: string | null;
     bg_theme: 'blue' | 'dark' | 'light';
     live_url?: string | null;
+    is_featured?: boolean;
+    sort_order?: number;
 };
 
 export type TestimonialItem = {
@@ -78,10 +81,24 @@ export type TestimonialItem = {
     rating: number;
     avatar_path?: string | null;
     card_type: 'photo' | 'text';
+    is_active?: boolean;
+    sort_order?: number;
 };
 
 export type FaqItem = {
     id: number | string;
     question: string;
     answer: string;
+    sort_order?: number;
+    is_active?: boolean;
+};
+
+export type AdminDashboardStats = {
+    projects_count: number;
+    featured_projects_count: number;
+    pricing_plans_count: number;
+    active_testimonials_count: number;
+    total_testimonials_count: number;
+    active_faqs_count: number;
+    total_faqs_count: number;
 };

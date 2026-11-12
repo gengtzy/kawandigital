@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import Reveal from '@/components/landing/reveal';
+import { resolveStorageUrl } from '@/lib/storage';
 import type { TestimonialItem } from '@/types';
 
 type TestimonialsSectionProps = {
@@ -101,6 +102,7 @@ export default function TestimonialsSection({
                             5,
                             Math.max(1, Math.round(item.rating)),
                         );
+                        const avatarUrl = resolveStorageUrl(item.avatar_path);
 
                         return (
                             <Reveal
@@ -153,9 +155,9 @@ export default function TestimonialsSection({
                                                 : 'border-[#E2E8F0]'
                                         }`}
                                     >
-                                        {item.avatar_path ? (
+                                        {avatarUrl ? (
                                             <img
-                                                src={item.avatar_path}
+                                                src={avatarUrl}
                                                 alt={`Foto ${item.client_name}`}
                                                 width={40}
                                                 height={40}
