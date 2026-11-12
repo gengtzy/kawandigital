@@ -151,6 +151,24 @@
         html {
             scroll-behavior: smooth;
         }
+
+        .animate-hero-float {
+            animation: hero-card-float 6s ease-in-out infinite;
+        }
+
+        .animate-hero-float-delayed {
+            animation: hero-card-float 7s ease-in-out 1.4s infinite;
+        }
+    }
+
+    @keyframes hero-card-float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-6px);
+        }
     }
 
     body {

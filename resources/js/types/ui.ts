@@ -41,3 +41,42 @@ export type PublicLayoutProps = {
     siteSettings?: SiteSettings;
     footerTopSlot?: ReactNode;
 };
+
+export type PricingPlanItem = {
+    id: number | string;
+    name: string;
+    price_label: string;
+    billing_note: string;
+    description: string;
+    features: string[];
+    is_highlighted: boolean;
+    cta_text: string;
+    whatsapp_message?: string | null;
+};
+
+export type ProjectItem = {
+    id: number | string;
+    title: string;
+    slug: string;
+    client_name: string;
+    category: string;
+    year: string | number;
+    thumbnail_path?: string | null;
+    bg_theme: 'blue' | 'dark' | 'light';
+    live_url?: string | null;
+};
+
+export type TestimonialItem = {
+    id: number | string;
+    client_name: string;
+    business_name: string;
+    quote: string;
+    rating: number;
+    card_type: 'photo' | 'text';
+};
+
+export type FaqItem = {
+    id: number | string;
+    question: string;
+    answer: string;
+};

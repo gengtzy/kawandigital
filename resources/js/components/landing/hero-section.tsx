@@ -11,6 +11,7 @@ type ClientCategoryCard = {
     category: string;
     scope: string;
     positionClass: string;
+    floatClass: string;
 };
 
 const CLIENT_CATEGORY_CARDS: readonly ClientCategoryCard[] = [
@@ -18,25 +19,29 @@ const CLIENT_CATEGORY_CARDS: readonly ClientCategoryCard[] = [
         initials: 'KG',
         category: 'Klinik Gigi',
         scope: 'Profil layanan & jadwal praktik',
-        positionClass: 'top-8 left-0',
+        positionClass: 'top-4 left-4',
+        floatClass: 'animate-hero-float',
     },
     {
         initials: 'KR',
         category: 'Kafe & Resto',
         scope: 'Daftar menu & peta lokasi',
-        positionClass: 'bottom-6 left-4',
+        positionClass: 'bottom-4 left-8',
+        floatClass: 'animate-hero-float-delayed',
     },
     {
         initials: 'JR',
         category: 'Jasa Renovasi',
         scope: 'Galeri hasil kerja & kontak WA',
-        positionClass: 'top-6 right-0',
+        positionClass: 'top-4 right-4',
+        floatClass: 'animate-hero-float-delayed',
     },
     {
         initials: 'TR',
         category: 'Toko Retail',
         scope: 'Katalog produk & jam operasional',
-        positionClass: 'bottom-8 right-4',
+        positionClass: 'bottom-4 right-8',
+        floatClass: 'animate-hero-float',
     },
 ];
 
@@ -65,13 +70,41 @@ export default function HeroSection({
                 background: 'linear-gradient(180deg, #DCE7FF 0%, #FFFFFF 100%)',
             }}
         >
-            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                {/* Kartu kategori klien di area whitespace kiri-kanan pada layar desktop lebar (xl+) */}
-                <div aria-hidden="true" className="hidden xl:block">
+            {/* Pilar cahaya vertikal lembut untuk kedalaman latar Hero */}
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 mx-auto max-w-6xl overflow-hidden"
+            >
+                <div
+                    className="absolute inset-y-0 left-[8%] w-28 sm:w-40"
+                    style={{
+                        background:
+                            'linear-gradient(180deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0) 85%)',
+                    }}
+                />
+                <div
+                    className="absolute inset-y-0 left-1/2 w-56 -translate-x-1/2 sm:w-80"
+                    style={{
+                        background:
+                            'linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.18) 65%, rgba(255,255,255,0) 100%)',
+                    }}
+                />
+                <div
+                    className="absolute inset-y-0 right-[8%] w-28 sm:w-40"
+                    style={{
+                        background:
+                            'linear-gradient(180deg, rgba(255,255,255,0.48) 0%, rgba(255,255,255,0) 85%)',
+                    }}
+                />
+            </div>
+
+            <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+                {/* 4 kartu kategori klien hanya pada layar lebar (2xl+) di sisi paling luar */}
+                <div aria-hidden="true" className="hidden 2xl:block">
                     {CLIENT_CATEGORY_CARDS.map((card) => (
                         <div
                             key={card.category}
-                            className={`absolute ${card.positionClass} w-52 rounded-2xl border border-[#CBD5E1] bg-white/95 p-3.5 shadow-sm`}
+                            className={`absolute ${card.positionClass} ${card.floatClass} w-56 rounded-2xl border border-[#CBD5E1] bg-white/95 p-3.5 shadow-sm`}
                         >
                             <div className="flex items-center gap-3">
                                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-obsidian text-xs font-bold tracking-tight text-white">
@@ -99,25 +132,28 @@ export default function HeroSection({
                         <span>JASA PEMBUATAN WEBSITE BISNIS</span>
                     </p>
 
-                    <h1
-                        id="hero-heading"
-                        className="mt-5 font-bold tracking-[-0.03em] text-ink-primary"
-                        style={{
-                            fontSize: 'clamp(2.125rem, 4.6vw, 3.625rem)',
-                            lineHeight: 1.12,
-                        }}
-                    >
-                        Website profesional untuk bisnis Anda,{' '}
-                        <span className="text-brand-blue">
-                            siap online dalam 5 hari.
-                        </span>
-                    </h1>
+                    <div className="mx-auto mt-5 max-w-3xl">
+                        <h1
+                            id="hero-heading"
+                            className="font-bold tracking-[-0.03em] text-ink-primary"
+                            style={{
+                                fontSize: 'clamp(2.125rem, 4.6vw, 3.625rem)',
+                                lineHeight: 1.12,
+                            }}
+                        >
+                            Website profesional untuk bisnis Anda,{' '}
+                            <span className="text-brand-blue">
+                                siap online dalam 5 hari.
+                            </span>
+                        </h1>
 
-                    <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#334155] sm:text-lg">
-                        Anda bisa melihat preview desain website terlebih dahulu
-                        sebelum pelunasan. Alur pengerjaan jelas, materi dikirim
-                        lewat WhatsApp, dan tim kami siapkan hingga tayang.
-                    </p>
+                        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#334155] sm:text-lg">
+                            Anda bisa melihat preview desain website terlebih
+                            dahulu sebelum pelunasan. Alur pengerjaan jelas,
+                            materi dikirim lewat WhatsApp, dan tim kami siapkan
+                            hingga tayang.
+                        </p>
+                    </div>
 
                     <ul
                         aria-label="Cakupan layanan yang disertakan"
@@ -145,7 +181,7 @@ export default function HeroSection({
                                 href={whatsappHref}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-obsidian px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1E293B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue active:bg-[#0F172A]"
+                                className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-obsidian px-7 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#1E293B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue active:bg-[#0F172A] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                             >
                                 Tanya via WhatsApp
                             </a>
@@ -162,10 +198,9 @@ export default function HeroSection({
                             </button>
                         )}
 
-                        {/* TODO: Pastikan section id="portofolio" ditambahkan pada tahap selanjutnya */}
                         <a
                             href="#portofolio"
-                            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#64748B] bg-white px-7 py-3 text-sm font-semibold text-ink-primary transition-colors hover:border-ink-primary hover:bg-soft-slate focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue active:bg-[#E2E8F0]"
+                            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#64748B] bg-white px-7 py-3 text-sm font-semibold text-ink-primary transition-all duration-300 hover:-translate-y-1 hover:border-ink-primary hover:bg-soft-slate focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue active:bg-[#E2E8F0] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                         >
                             Lihat Contoh Website
                         </a>
@@ -175,4 +210,3 @@ export default function HeroSection({
         </section>
     );
 }
-

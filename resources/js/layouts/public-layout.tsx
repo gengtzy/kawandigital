@@ -137,7 +137,7 @@ export default function PublicLayout({
 
                         <div className="flex items-center gap-2">
                             {renderWhatsAppCta(
-                                'hidden sm:inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-obsidian transition-colors hover:bg-[#DCE7FF] active:bg-[#CBD5E1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue',
+                                'hidden sm:inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-obsidian transition-all duration-300 hover:-translate-y-1 hover:bg-[#DCE7FF] active:bg-[#CBD5E1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                             )}
 
                             <button
@@ -244,7 +244,7 @@ export default function PublicLayout({
                             </p>
                             <div className="mt-5">
                                 {renderWhatsAppCta(
-                                    'inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-obsidian transition-colors hover:bg-[#DCE7FF] active:bg-[#CBD5E1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue',
+                                    'inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-semibold text-obsidian transition-all duration-300 hover:-translate-y-1 hover:bg-[#DCE7FF] active:bg-[#CBD5E1] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue motion-reduce:transition-none motion-reduce:hover:translate-y-0',
                                 )}
                             </div>
                         </div>
@@ -351,21 +351,29 @@ export default function PublicLayout({
                     </div>
                 </div>
 
-                {/* Oversized wordmark terpotong rapi di tepi bawah viewport */}
+                {/* Oversized wordmark SVG terkalibrasi penuh: terbaca utuh kiri-kanan, terpotong rapi di tepi bawah */}
                 <div
                     aria-hidden="true"
                     className="pointer-events-none w-full overflow-hidden pt-4 select-none sm:pt-6"
                 >
-                    <p
-                        className="mx-auto text-center font-bold tracking-[-0.04em] whitespace-nowrap text-[#64748B]"
-                        style={{
-                            fontSize: 'clamp(2.35rem, 12.6vw, 13rem)',
-                            lineHeight: 0.82,
-                            marginBottom: '-0.18em',
-                        }}
+                    <svg
+                        viewBox="0 0 1200 122"
+                        preserveAspectRatio="xMidYMax meet"
+                        className="block h-auto w-full"
                     >
-                        {brandName}
-                    </p>
+                        <text
+                            x="600"
+                            y="128"
+                            textAnchor="middle"
+                            fill="#64748B"
+                            fontSize="140"
+                            fontWeight="700"
+                            letterSpacing="-4"
+                            className="font-sans"
+                        >
+                            {brandName}
+                        </text>
+                    </svg>
                 </div>
             </footer>
         </div>
