@@ -17,13 +17,19 @@ export default function PublicLayout({
 }: PublicLayoutProps) {
     const { props, url } = usePage();
     const siteSettings = siteSettingsProp ?? props.siteSettings;
-    const brandName = siteSettings?.site_name?.trim() || 'kawandigital.id';
+    const brandName =
+        siteSettings?.brand_name?.trim() ||
+        siteSettings?.site_name?.trim() ||
+        'kawandigital.id';
     const whatsappHref = resolveWhatsAppHref(siteSettings);
     const whatsappDisplay = formatWhatsAppDisplay(siteSettings);
     const email = siteSettings?.email?.trim() || null;
     const location =
         siteSettings?.address?.trim() || siteSettings?.city?.trim() || null;
-    const workingHours = siteSettings?.working_hours?.trim() || null;
+    const workingHours =
+        siteSettings?.operational_hours?.trim() ||
+        siteSettings?.working_hours?.trim() ||
+        null;
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const headerRef = useRef<HTMLElement>(null);

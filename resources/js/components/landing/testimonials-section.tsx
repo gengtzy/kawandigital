@@ -88,7 +88,13 @@ export default function TestimonialsSection({
                     </div>
                 </Reveal>
 
-                <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+                <div
+                    className={`mt-12 grid grid-cols-1 gap-6 ${
+                        activeTestimonials.length === 4
+                            ? 'md:grid-cols-2 lg:grid-cols-4'
+                            : 'md:grid-cols-3'
+                    }`}
+                >
                     {activeTestimonials.map((item, index) => {
                         const isDarkCard = item.card_type === 'photo';
                         const clampedRating = Math.min(
@@ -147,16 +153,27 @@ export default function TestimonialsSection({
                                                 : 'border-[#E2E8F0]'
                                         }`}
                                     >
-                                        <span
-                                            aria-hidden="true"
-                                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold tracking-tight ${
-                                                isDarkCard
-                                                    ? 'bg-brand-blue text-white'
-                                                    : 'bg-obsidian text-white'
-                                            }`}
-                                        >
-                                            {getInitials(item.client_name)}
-                                        </span>
+                                        {item.avatar_path ? (
+                                            <img
+                                                src={item.avatar_path}
+                                                alt={`Foto ${item.client_name}`}
+                                                width={40}
+                                                height={40}
+                                                loading="lazy"
+                                                className="h-10 w-10 shrink-0 rounded-full object-cover"
+                                            />
+                                        ) : (
+                                            <span
+                                                aria-hidden="true"
+                                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold tracking-tight ${
+                                                    isDarkCard
+                                                        ? 'bg-brand-blue text-white'
+                                                        : 'bg-obsidian text-white'
+                                                }`}
+                                            >
+                                                {getInitials(item.client_name)}
+                                            </span>
+                                        )}
                                         <div className="min-w-0">
                                             <p
                                                 className={`truncate text-sm font-bold ${

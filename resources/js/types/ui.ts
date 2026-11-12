@@ -21,8 +21,11 @@ export type AuthLayoutProps = {
 };
 
 export type SiteSettings = {
+    brand_name?: string | null;
     site_name?: string | null;
     tagline?: string | null;
+    hero_title?: string | null;
+    hero_subtitle?: string | null;
     whatsapp?: string | null;
     whatsapp_number?: string | null;
     whatsapp_url?: string | null;
@@ -31,6 +34,7 @@ export type SiteSettings = {
     phone?: string | null;
     address?: string | null;
     city?: string | null;
+    operational_hours?: string | null;
     working_hours?: string | null;
     instagram_url?: string | null;
     [key: string]: unknown;
@@ -72,6 +76,7 @@ export type TestimonialItem = {
     business_name: string;
     quote: string;
     rating: number;
+    avatar_path?: string | null;
     card_type: 'photo' | 'text';
 };
 

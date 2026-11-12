@@ -52,11 +52,37 @@ const INCLUDED_ITEMS = [
     'Google Business Profile',
 ] as const;
 
+const DEFAULT_HERO_TITLE =
+    'Website profesional untuk bisnis Anda, siap online dalam 5 hari.';
+const DEFAULT_HERO_SUBTITLE =
+    'Anda bisa melihat preview desain website terlebih dahulu sebelum pelunasan. Alur pengerjaan jelas, materi dikirim lewat WhatsApp, dan tim kami siapkan hingga tayang.';
+
+function renderHeroHeadline(title: string) {
+    const trimmed = title.trim();
+    const commaIndex = trimmed.lastIndexOf(',');
+
+    if (commaIndex === -1 || commaIndex >= trimmed.length - 1) {
+        return trimmed;
+    }
+
+    const prefix = trimmed.slice(0, commaIndex + 1);
+    const accent = trimmed.slice(commaIndex + 1).trim();
+
+    return (
+        <>
+            {prefix} <span className="text-brand-blue">{accent}</span>
+        </>
+    );
+}
+
 export default function HeroSection({
     siteSettings: siteSettingsProp,
 }: HeroSectionProps) {
     const { props } = usePage();
     const siteSettings = siteSettingsProp ?? props.siteSettings;
+    const heroTitle = siteSettings?.hero_title?.trim() || DEFAULT_HERO_TITLE;
+    const heroSubtitle =
+        siteSettings?.hero_subtitle?.trim() || DEFAULT_HERO_SUBTITLE;
     const whatsappHref = resolveWhatsAppHref(
         siteSettings,
         'Halo kawandigital.id, saya ingin tanya pembuatan website bisnis.',
@@ -141,17 +167,11 @@ export default function HeroSection({
                                 lineHeight: 1.12,
                             }}
                         >
-                            Website profesional untuk bisnis Anda,{' '}
-                            <span className="text-brand-blue">
-                                siap online dalam 5 hari.
-                            </span>
+                            {renderHeroHeadline(heroTitle)}
                         </h1>
 
                         <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#334155] sm:text-lg">
-                            Anda bisa melihat preview desain website terlebih
-                            dahulu sebelum pelunasan. Alur pengerjaan jelas,
-                            materi dikirim lewat WhatsApp, dan tim kami siapkan
-                            hingga tayang.
+                            {heroSubtitle}
                         </p>
                     </div>
 
