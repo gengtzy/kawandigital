@@ -30,9 +30,9 @@
             }
         </style>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+        <link rel="alternate icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" href="/favicon.svg?v=2">
 
         {{-- Google Fonts: Plus Jakarta Sans (400, 500, 600, 700) --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
